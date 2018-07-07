@@ -29,10 +29,6 @@ services:
                 build: ./config/composer
                 volumes:
                         - ./src:/app
-                networks:
-                        back:
-                                driver: brigde
-
-
-
-          
+networks:
+        back:
+          driver: bridge
