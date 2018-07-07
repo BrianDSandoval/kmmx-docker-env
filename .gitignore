@@ -1,3 +1,4 @@
 /src
 /logs
+/config/db/lib
 .env

@@ -24,6 +24,8 @@ services:
                 environment:
                         - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
                         - MYSQL_DATABASE=${MYSQL_DATABASE}
+                volumes:
+                        - ./config/db/lib:/var/lib/mysql
         composer:
                 container_name: kmmx-container
                 build: ./config/composer
