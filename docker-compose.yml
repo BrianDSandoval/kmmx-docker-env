@@ -5,6 +5,8 @@ services:
                 build: ./config/web
                 ports:
                         - 80:80
+                networks:
+                        - back
                 environment:
                         - HOST_NAME=${HOST_NAME}
                 volumes:
@@ -12,4 +14,25 @@ services:
                         - ./logs/apache/access.log:/var/log/apache2/access.log
                         - ./logs/apache/error.log:/var/log/apache2/error.log
                         - ./src:/var/www/html
+        mysql:
+                container_name: kmmx-mysql
+                build: ./config/db
+                ports:
+                        - 3306:3306
+                networks:
+                        - back
+                environment:
+                        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+                        - MYSQL_DATABASE=${MYSQL_DATABASE}
+        composer:
+                container_name: kmmx-container
+                build: ./config/composer
+                volumes:
+                        - ./src:/app
+                networks:
+                        back:
+                                driver: brigde
+
+
+
           
